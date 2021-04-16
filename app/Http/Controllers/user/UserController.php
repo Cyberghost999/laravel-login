@@ -53,20 +53,27 @@ class UserController extends Controller{
 
 
 	public function postRegister(Request $request){
-        $username = $request->input('Name');
-		$email = $request->input('Email');
-		$contact = $request->input('Contact');
-		$password = $request->input('Password');
+        $username = $request->input('name');
+		$email = $request->input('email');
+		$contact = $request->input('contact');
+		$password = $request->input('password');
 		$address = $request->input('address');
 		$city = $request->input('city');
 		$country = $request->input('country');
 		$zip = $request->input('zip');
+		$state = $request->input('state');
 
-		$data=array('username'=>$name,'email'=>$email,'contact'=>$contact,'password'=>$password, 'address'=>$address,'city'=>$city,'country'=>$country,'zip'=>$zip);
+		$data=array('username'=>$username,'email'=>$email,'contact'=>$contact,'password'=>$password, 'address'=>$address,'city'=>$city,'country'=>$country,'zip'=>$zip, 'state'=>$state);
 
+		// print_r($data);
+		$duplicate=DB::table('users')->where(['email'=>$email])->get();
+		if (count($duplicate)>0){
+			echo '<script type="text/javascript">alert("Email Already Exists"); </script>';
+			return view('signup');
+		}
 		DB::table('users')->insert($data);
 
-		return \Redirect::to('/login');
+		return Redirect::to('/login');
 
 }
 	public function dash(Request $request){
@@ -77,6 +84,11 @@ class UserController extends Controller{
 		else {
 			return redirect('/login');
 		}
+	}
+	public function logout(){
+		session_start();
+		session_destroy();
+		return redirect('/');
 	}
 }
 

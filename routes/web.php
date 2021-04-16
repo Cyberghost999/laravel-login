@@ -42,3 +42,4 @@ Route::post('/signup','user\UserController@postRegister');
 //     return view('hello');
 // });
 Route::get('/dashboard', 'user\UserController@dash');
+Route::get('/logout', 'user\UserController@logout');

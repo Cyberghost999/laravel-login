@@ -41,4 +41,4 @@ Route::post('/signup','user\UserController@postRegister');
 // Route::get('/hello', function () {
 //     return view('hello');
 // });
-Route::get('/dashboard', 'UserController@dash');
+Route::get('/dashboard', 'user\UserController@dash');

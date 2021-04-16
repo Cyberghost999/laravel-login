@@ -10,12 +10,14 @@
   <form action="/signup" method="post">
     <div class="form-group">
     <div class="form-group">
+    @foreach ($_SESSION['data'] as $d)
+      
     
 
   
       <label>Username:</label>
       <input type="text" class="form-control" name="Name" placeholder="
-      <?php echo $_SESSION['name'] ?>
+      {{$d -> username}}
 	  ">
     </div>
       <label>Email:</label>
@@ -31,7 +33,7 @@
       <input type="password" class="form-control" name="Password" placeholder="Enter password" name="pwd">
     </div>
     
-
+    @endforeach
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
 </div>

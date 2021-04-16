@@ -36,8 +36,8 @@ class UserController extends Controller{
 			if(count($ValidateUser)>0)
 			{	
 				session_start();
-				$_SESSION['name'] = $Name;
-				return \View::make('dashboard');
+				$_SESSION['data'] = $ValidateUser;
+				return redirect('/dashboard');
 			    
 					
 				}
@@ -53,12 +53,16 @@ class UserController extends Controller{
 
 
 	public function postRegister(Request $request){
-        $Name = $request->input('Name');
-		$Email = $request->input('Email');
-		$Contact = $request->input('Contact');
-		$Password = $request->input('Password');
+        $username = $request->input('Name');
+		$email = $request->input('Email');
+		$contact = $request->input('Contact');
+		$password = $request->input('Password');
+		$address = $request->input('address');
+		$city = $request->input('city');
+		$country = $request->input('country');
+		$zip = $request->input('zip');
 
-		$data=array('username'=>$Name,'email'=>$Email,'contact'=>$Contact,'password'=>$Password);
+		$data=array('username'=>$name,'email'=>$email,'contact'=>$contact,'password'=>$password, 'address'=>$address,'city'=>$city,'country'=>$country,'zip'=>$zip);
 
 		DB::table('users')->insert($data);
 
@@ -66,10 +70,12 @@ class UserController extends Controller{
 
 }
 	public function dash(Request $request){
-
+		session_start();
 		if (isset($_SESSION['data'])){
-			$data = $request->session()->all();
-			return view('dashboard', compact('data'));
+			return view('dashboard',);
+		}
+		else {
+			return redirect('/login');
 		}
 	}
 }

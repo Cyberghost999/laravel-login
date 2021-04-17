@@ -10,4 +10,4 @@ Step 4 :- In the <i>.env</i> file, change the DATABASE_NAME to any database name
 
 Step 5 :- In the same terminal, write the command <i>php artisan migrate</i>. 
 
-Step 6 :- In terminal, write the command <i>php artisan serve</i>and open the localhost in any of the browsers. 
+Step 6 :- In terminal, write the command <i>php artisan serve</i> and open the localhost in any of the browsers. 

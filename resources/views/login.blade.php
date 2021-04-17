@@ -2,7 +2,7 @@
 
 @section('form')
 <div class="container">
-  
+  <h1><center>Login</center></h1>
   <form action="/login" method="post">
     
     <div class="form-group">

@@ -57,6 +57,7 @@ class UserController extends Controller{
 		$email = $request->input('email');
 		$contact = $request->input('contact');
 		$password = $request->input('password');
+		$confirmpass = $request->input('confirmPassword');
 		$address = $request->input('address');
 		$city = $request->input('city');
 		$country = $request->input('country');
@@ -71,9 +72,18 @@ class UserController extends Controller{
 			echo '<script type="text/javascript">alert("Email Already Exists"); </script>';
 			return view('signup');
 		}
-		DB::table('users')->insert($data);
+		if($password == $confirmpass){
+			DB::table('users')->insert($data);
+			return Redirect::to('/login');
+		}
+		if ($password != $confirmpass){
+			// echo 1243;
+			echo '<script type="text/javascript">alert("Passwords do not match"); </script>';
+			return view('signup');
+		}
+		
 
-		return Redirect::to('/login');
+		
 
 }
 	public function dash(Request $request){

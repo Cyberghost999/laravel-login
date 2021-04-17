@@ -7,6 +7,7 @@
     // session_start();
 // }
 ?>
+<h1><center>Profile</center></h1>
   <form action="/signup" method="post">
     <div class="form-group">
     <div class="form-group">
@@ -46,6 +47,10 @@
 <div class="form-group">
   <label>zip:</label>
   <input type="number" class="form-control" name="zip" placeholder="{{$d -> zip}}" readonly>
+</div>
+<div class="form-group">
+  <label>Created At:</label>
+  <input type="number" class="form-control" name="zip" placeholder="{{$d -> created_at}}" readonly>
 </div>
     
     @endforeach
